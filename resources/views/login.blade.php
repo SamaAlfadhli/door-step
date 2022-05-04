@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>User Login</title>
     <style>
         /* navbar */
         .navbar {
@@ -174,9 +174,62 @@
         }
 
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.session.set('user', null)
+            $("form").submit(async (event) => {
+                const email = event.target.email.value;
+                const password = event.target.password.value;
+                event.preventDefault();
+                try {
+                    event.preventDefault();
+
+
+                    //uncomment under to write send requests.
+                    // $.ajax({
+                    //     dataType: 'jsonp',
+                    //     async: true,
+                    //     crossDomain: true,
+                    //     method: 'POST',
+                    //     headers: {
+                    //         accept: "application/json",
+                    //     },
+                    //     url: 'http://localhost:3000/api/login',
+                    //     data: JSON.stringify({
+                    //         email,
+                    //         password
+                    //     }),
+                    //     success: function(data) {
+                    //         alert("Success")
+                    //         //callback methods go right here
+                    //     },
+                    //     error: function(jqxhr, textStatus, err) {
+                    //         alert("Error!")
+                    //         console.log(jqxhr)
+                    //         console.log(textStatus)
+                    //         console.log(err)
+                    //     }
+                    // });
+                    $.session.set('user', email)
+                    window.location.assign("/userprofile");
+                } catch (ex) {
+                    alert("Error occured..." + ex)
+                }
+
+
+
+            });
+        });
+    </script>
 </head>
 
 <body>
+    <?php
+    
+    ?>
     <nav class="navbar">
         <div class="navcontainer">
             <a href="/">
@@ -189,9 +242,7 @@
                 <a href="/register">
                     <div class="nav">Register</div>
                 </a>
-                <a href="/userprofile">
-                    <div class="nav">Profile</div>
-                </a>
+
             </div>
         </div>
     </nav>

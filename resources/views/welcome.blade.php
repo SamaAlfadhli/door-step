@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Door Step</title>
+
     <style>
         html,
         body {
@@ -83,9 +84,28 @@
         .logReg {
             display: flex;
             gap: 5px;
+            font-size: 0.8rem;
         }
 
     </style>
+
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            if ($.session.get('user') != null) {
+                $('#login').hide();
+                $('#register').hide();
+
+            } else {
+                $('#profile').hide();
+
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -95,13 +115,13 @@
                 <div class="nav">DoorStep</div>
             </a>
             <div class="logReg">
-                <a href="/login">
+                <a id="login" href="/login">
                     <div class="nav">Login</div>
                 </a>
-                <a href="/register">
+                <a id="register" href="/register">
                     <div class="nav">Register</div>
                 </a>
-                <a href="/userprofile">
+                <a id="profile" href="/userprofile">
                     <div class="nav">Profile</div>
                 </a>
             </div>
@@ -115,6 +135,7 @@
                 we deliver
             </h3>
         </div>
+        <div>{{ Session::get('user') }}</div>
     </div>
 </body>
 
