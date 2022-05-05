@@ -190,29 +190,22 @@
                     event.preventDefault();
 
 
-                    //uncomment under to write send requests.
                     // $.ajax({
-                    //     dataType: 'jsonp',
-                    //     async: true,
-                    //     crossDomain: true,
-                    //     method: 'POST',
+                    //     mode: 'no-cors',
+                    //     url: '/api/login',
                     //     headers: {
-                    //         accept: "application/json",
+                    //         'Content-Type': 'application/json'
                     //     },
-                    //     url: 'http://localhost:3000/api/login',
-                    //     data: JSON.stringify({
-                    //         email,
-                    //         password
-                    //     }),
-                    //     success: function(data) {
-                    //         alert("Success")
-                    //         //callback methods go right here
+                    //     crossDomain: true,
+                    //     type: "POST",
+                    //     /* or type:"GET" or type:"PUT" */
+                    //     dataType: "json",
+                    //     data: jQuery.param({ email: email, password : password}),
+                    //     success: function(result) {
+                    //         console.log(result);
                     //     },
-                    //     error: function(jqxhr, textStatus, err) {
-                    //         alert("Error!")
-                    //         console.log(jqxhr)
-                    //         console.log(textStatus)
-                    //         console.log(err)
+                    //     error: function(xr, err, stats) {
+                    //         console.log(xr);
                     //     }
                     // });
                     $.session.set('user', email)

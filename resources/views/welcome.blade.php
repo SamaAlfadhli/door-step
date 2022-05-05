@@ -104,6 +104,7 @@
             } else {
                 $('#profile').hide();
                 $('#logout').hide();
+                $('#groceries').hide();
             }
         });
     </script>
@@ -122,6 +123,9 @@
                 <a id="register" href="/register">
                     <div class="nav">Register</div>
                 </a>
+                <a id="groceries" href="/groceries">
+                    <div class="nav">Groceries</div>
+                </a>
                 <a id="profile" href="/userprofile">
                     <div class="nav">Profile</div>
                 </a>
@@ -139,7 +143,7 @@
                 we deliver
             </h3>
         </div>
-        <div>{{ Session::get('user') }}</div>
+
     </div>
 </body>
 

@@ -86,11 +86,48 @@
         .container {
             max-width: 1000px;
             width: 100%;
+
+        }
+
+        .itemRow {
+            max-width: 1000px;
+            width: 100%;
             display: grid;
+            gap: 10px;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             padding: 10px;
+            place-items: center;
+        }
+
+        .itemRow>* {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            aspect-ratio: 1/1;
+            max-width: 200px;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 5px;
+            text-align: center;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
                 rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        }
+
+        .itemRow>span>span {
+            padding: 10px 5px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .itemRow>span>span {
+
+            display: grid;
+        }
+
+        .priceSpan {
+            margin-left: auto;
         }
 
         .container>form {
@@ -187,6 +224,36 @@
 
             $("#phone").attr("value", $.session.get('phone'));
             $("#addr").attr("value", $.session.get('addr'));
+
+
+
+            $.ajax({
+                mode: 'no-cors',
+                url: 'http://localhost:3000',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                crossDomain: true,
+                type: "GET",
+                /* or type:"GET" or type:"PUT" */
+                dataType: "json",
+                success: function(result) {
+                    for (var i = 0; i < result.length; i += 2) {
+                        if (i + 1 < result.length)
+                            $('.container').append(
+                                `<div class="itemRow"><span style="background-image: url(${'/images/deliveryman.png'});"><span class="priceSpan">$${result[i].price}</span><span><span>${result[i].name}</span></span></span> <span style="background-image: url(${'/images/deliveryman.png'});"><span class="priceSpan">$${result[i+1].price}</span><span><span>${result[i+1].name}</span></span></div>`
+                            )
+                        else
+                            $('.container').append(
+                                `<div class="itemRow"><div class="itemRow"><span style="background-image: url(${'/images/deliveryman.png'});"><span class="priceSpan">$${result[i].price}</span><span><span>${result[i].name}</span><span>${result[i].category}</span></span></span></div>`
+                            )
+                    }
+
+                },
+                error: function(xr, err, stats) {
+                    console.log(xr);
+                }
+            });
         })
     </script>
 </head>
@@ -212,7 +279,6 @@
             <h3>Groceries</h3>
         </div>
         <div class="container">
-
 
         </div>
     </div>
