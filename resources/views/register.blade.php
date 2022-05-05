@@ -180,9 +180,42 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $("form").submit(async (event) => {
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        event.preventDefault();
+        try {
+            event.preventDefault();
 
-        })
+
+            // $.ajax({
+            //     mode: 'no-cors',
+            //     url: '/api/register',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     crossDomain: true,
+            //     type: "POST",
+            //     /* or type:"GET" or type:"PUT" */
+            //     dataType: "json",
+            //     data: jQuery.param({ email: email, password : password}),
+            //     success: function(result) {
+            //         console.log(result);
+            //     },
+            //     error: function(xr, err, stats) {
+            //         console.log(xr);
+            //     }
+            // });
+
+            window.location.assign("/login");
+        } catch (ex) {
+            alert("Error occured..." + ex)
+        }
+
+
+
+        });
+        });
     </script>
 </head>
 
