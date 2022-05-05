@@ -96,13 +96,14 @@
 
     <script>
         $(document).ready(function() {
-            if ($.session.get('user') != null) {
+            console.log($.session.get('user'))
+            if ($.session.get('user')) {
                 $('#login').hide();
                 $('#register').hide();
 
             } else {
                 $('#profile').hide();
-
+                $('#logout').hide();
             }
         });
     </script>
@@ -123,6 +124,9 @@
                 </a>
                 <a id="profile" href="/userprofile">
                     <div class="nav">Profile</div>
+                </a>
+                <a id="logout" href="/login">
+                    <div class="nav">Log out</div>
                 </a>
             </div>
         </div>

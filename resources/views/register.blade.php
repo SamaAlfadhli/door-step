@@ -181,10 +181,7 @@
 
     <script>
         $(document).ready(function() {
-            if ($.session.get('user') == null) {
-                window.location.replace("/login");
-            }
-            console.log($.session.get('user'));
+
         })
     </script>
 </head>

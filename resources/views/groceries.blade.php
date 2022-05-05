@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Login</title>
+    <title>User Profile</title>
     <style>
         /* navbar */
         .navbar {
@@ -38,7 +38,9 @@
         .logReg {
             display: flex;
             gap: 5px;
+            font-size: 0.8rem;
         }
+
 
         /* Body */
         html,
@@ -179,105 +181,39 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
     <script>
         $(document).ready(function() {
-            $.session.clear();
+            if ($.session.get('user') == undefined) {
+                window.location.replace("/login");
+            }
 
-            console.log($.session.get('user'))
-            $("form").submit(async (event) => {
-                const email = event.target.email.value;
-                const password = event.target.password.value;
-                event.preventDefault();
-                try {
-                    event.preventDefault();
-
-
-                    //uncomment under to write send requests.
-                    // $.ajax({
-                    //     dataType: 'jsonp',
-                    //     async: true,
-                    //     crossDomain: true,
-                    //     method: 'POST',
-                    //     headers: {
-                    //         accept: "application/json",
-                    //     },
-                    //     url: 'http://localhost:3000/api/login',
-                    //     data: JSON.stringify({
-                    //         email,
-                    //         password
-                    //     }),
-                    //     success: function(data) {
-                    //         alert("Success")
-                    //         //callback methods go right here
-                    //     },
-                    //     error: function(jqxhr, textStatus, err) {
-                    //         alert("Error!")
-                    //         console.log(jqxhr)
-                    //         console.log(textStatus)
-                    //         console.log(err)
-                    //     }
-                    // });
-                    $.session.set('user', email)
-                    $.session.set('addr', "My Address")
-                    $.session.set('phone', "054856354")
-                    window.location.assign("/");
-                } catch (ex) {
-                    alert("Error occured..." + ex)
-                }
-
-
-
-            });
-        });
+            $("#phone").attr("value", $.session.get('phone'));
+            $("#addr").attr("value", $.session.get('addr'));
+        })
     </script>
 </head>
 
 <body>
-    <?php
-    
-    ?>
     <nav class="navbar">
         <div class="navcontainer">
             <a href="/">
                 <div class="nav">DoorStep</div>
             </a>
             <div class="logReg">
+                <a href="/userprofile">
+                    <div class="nav">Profile</div>
+                </a>
                 <a href="/login">
-                    <div class="nav">Login</div>
+                    <div class="nav">Log out</div>
                 </a>
-                <a href="/register">
-                    <div class="nav">Register</div>
-                </a>
-
             </div>
         </div>
     </nav>
     <div class="mainDiv">
         <div class="headerDiv">
-            <h3>User Login</h3>
-            <div>Please Login To Continue</div>
+            <h3>Groceries</h3>
         </div>
         <div class="container">
-            <form>
-                <div class="inputDiv">
-                    <label htmlFor="email">Email: </label>
-                    <input type="email" name="email" required id="" />
-                </div>
-                <div class="inputDiv">
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" name="password" required id="" />
-                </div>
-                <div class="forgotPassword">Forgot password?</div>
-                <div class="controlDiv">
-                    <input type="reset" value="Reset" />
-                    <input type="submit" value="Login" />
-                </div>
-                <div class="logReg">
-                    Don't have an account?
-                    <a href="/register">
-                        <strong>Register</strong>
-                    </a>
-                </div>
-            </form>
-            <div class="imgDiv"></div>
+
+
         </div>
     </div>
 </body>

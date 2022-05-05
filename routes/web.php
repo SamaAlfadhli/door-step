@@ -41,3 +41,9 @@ Route::get('/userprofile', function () {
     // }
     return view('userprofile');
 });
+Route::get('/groceries', function () {
+    // if (!isset($_SESSION["user"])) {
+    //     return abort('404');
+    // }
+    return view('groceries');
+});

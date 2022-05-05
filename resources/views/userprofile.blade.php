@@ -181,10 +181,12 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
     <script>
         $(document).ready(function() {
-            if ($.session.get('user') == null) {
+            if ($.session.get('user') == undefined) {
                 window.location.replace("/login");
             }
-            console.log($.session.get('user'));
+            $("#email").attr("value", $.session.get('user'));
+            $("#phone").attr("value", $.session.get('phone'));
+            $("#addr").attr("value", $.session.get('addr'));
         })
     </script>
 </head>
@@ -196,14 +198,16 @@
                 <div class="nav">DoorStep</div>
             </a>
             <div class="logReg">
-                <a href="/login">
-                    <div class="nav">Login</div>
+
+                <a href="/groceries">
+                    <div class="nav">Groceries</div>
                 </a>
-                <a href="/register">
-                    <div class="nav">Register</div>
+                <a href="/login">
+                    <div class="nav">Log out</div>
                 </a>
 
             </div>
+
         </div>
     </nav>
     <div class="mainDiv">
@@ -215,24 +219,25 @@
             <form>
                 <div class="inputDiv">
                     <label htmlFor="email">Email: </label>
-                    <input type="email" name="email" required id="" />
+                    <input id="email" type="email" name="email" required id="" />
                 </div>
                 <div class="inputDiv">
                     <label htmlFor="password">Password: </label>
-                    <input type="password" name="password" required id="" />
+                    <input id="password" type="password" name="password" required id="" />
                 </div>
                 <div class="inputDiv">
                     <label htmlFor="address">Address: </label>
-                    <input type="text" name="address" required id="" />
+                    <input id="addr" type="text" name="address" required id="" />
                 </div>
                 <div class="inputDiv">
                     <label htmlFor="phone">Phone: </label>
-                    <input type="number" name="phone" required id="" />
+                    <input id="phone" type="number" name="phone" required id="" />
                 </div>
                 <div class="controlDiv">
                     <input type="reset" value="Reset" />
                     <input type="submit" value="Update" />
                 </div>
+
             </form>
             <div class="imgDiv"></div>
         </div>
